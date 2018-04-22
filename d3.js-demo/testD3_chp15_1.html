@@ -17,7 +17,7 @@
   <body>
     <svg width="960" height="600"></svg>
     <script>
-    	//¶¨Òå±ß½ç
+    	//å®šä¹‰è¾¹ç•Œ
     	var marge = {top:50, bottom:0, left:10, right:0};
     
     	var svg = d3.select("svg");
@@ -29,89 +29,89 @@
     	
     	var scale = svg.append("g")
     		.attr("transform","translate("+marge.top+","+marge.left+")");
-    	//Êı¾İ
+    	//æ•°æ®
     	var dataset = {
-    		name:"ÖĞ¹ú",
+    		name:"ä¸­å›½",
     		children:[
     			{
-    				name:"Õã½­",
+    				name:"æµ™æ±Ÿ",
     				children:[
-    					{name:"º¼Öİ" ,value:100},
-    					{name:"Äş²¨",value:100},
-            			{name:"ÎÂÖİ",value:100},
-            			{name:"ÉÜĞË",value:100}
+    					{name:"æ­å·" ,value:100},
+    					{name:"å®æ³¢",value:100},
+            			{name:"æ¸©å·",value:100},
+            			{name:"ç»å…´",value:100}
     				]
     			},
     			{
-    				name:"¹ãÎ÷",
+    				name:"å¹¿è¥¿",
     				children:[
     					{
-    						name:"¹ğÁÖ",
+    						name:"æ¡‚æ—",
     						children:[
-    							{name:"Ğã·åÇø",value:100},
-                				{name:"µş²ÊÇø",value:100},
-                				{name:"ÏóÉ½Çø",value:100},
-               					{name:"ÆßĞÇÇø",value:100}
+    							{name:"ç§€å³°åŒº",value:100},
+                				{name:"å å½©åŒº",value:100},
+                				{name:"è±¡å±±åŒº",value:100},
+               					{name:"ä¸ƒæ˜ŸåŒº",value:100}
     						]
     					},
-    					{name:"ÄÏÄş",value:100},
-            			{name:"ÁøÖİ",value:100},
-            			{name:"·À³Ç¸Û",value:100}
+    					{name:"å—å®",value:100},
+            			{name:"æŸ³å·",value:100},
+            			{name:"é˜²åŸæ¸¯",value:100}
     				]
     			},
     			{
-    				name:"ºÚÁú½­",
+    				name:"é»‘é¾™æ±Ÿ",
     				children:[
-    					{name:"¹ş¶û±õ",value:100},
-            			{name:"ÆëÆë¹ş¶û",value:100},
-            			{name:"Äµµ¤½­",value:100},
-            			{name:"´óÇì",value:100}
+    					{name:"å“ˆå°”æ»¨",value:100},
+            			{name:"é½é½å“ˆå°”",value:100},
+            			{name:"ç‰¡ä¸¹æ±Ÿ",value:100},
+            			{name:"å¤§åº†",value:100}
     				]
     			},
     			{
-    				name:"ĞÂ½®" , 
+    				name:"æ–°ç–†" , 
         			children:
         			[
-			            {name:"ÎÚÂ³Ä¾Æë"},
-			            {name:"¿ËÀ­ÂêÒÀ"},
-			            {name:"ÍÂÂ³·¬"},
-			            {name:"¹şÃÜ"}
+			            {name:"ä¹Œé²æœ¨é½"},
+			            {name:"å…‹æ‹‰ç›ä¾"},
+			            {name:"åé²ç•ª"},
+			            {name:"å“ˆå¯†"}
         			]
     			}
     		]
     	};
     	
-    	//´´½¨Ò»¸öhierarchy layout
+    	//åˆ›å»ºä¸€ä¸ªhierarchy layout
     	var hierarchyData = d3.hierarchy(dataset)
     		.sum(function(d){
     			return d.value;
     		});
     		
-    	//´´½¨Ò»¸öÊ÷×´Í¼
+    	//åˆ›å»ºä¸€ä¸ªæ ‘çŠ¶å›¾
     	var tree = d3.tree()
     		.size([width-400,height-200])
     		.separation(function(a,b){
     			return (a.parent==b.parent?1:2)/a.depth;
     		})
     	
-    	//³õÊ¼»¯Ê÷×´Í¼£¬Ò²¾ÍÊÇ´«ÈëÊı¾İ,²¢µÃµ½»æÖÆÊ÷»ù±¾Êı¾İ
+    	//åˆå§‹åŒ–æ ‘çŠ¶å›¾ï¼Œä¹Ÿå°±æ˜¯ä¼ å…¥æ•°æ®,å¹¶å¾—åˆ°ç»˜åˆ¶æ ‘åŸºæœ¬æ•°æ®
     	var treeData = tree(hierarchyData);
     	console.log(treeData);
-    	//µÃµ½½Úµã
+    	//å¾—åˆ°èŠ‚ç‚¹
     	var nodes = treeData.descendants();
     	var links = treeData.links();
     	
-    	//Êä³ö½ÚµãºÍ±ß
+    	//è¾“å‡ºèŠ‚ç‚¹å’Œè¾¹
     	console.log(nodes);
     	console.log(links);
     	
-    	//´´½¨Ò»¸ö±´Èû¶ûÉú³ÉÇúÏßÉú³ÉÆ÷
-    	var B¨¦zier_curve_generator = d3.linkHorizontal()
+    	//åˆ›å»ºä¸€ä¸ªè´å¡å°”ç”Ÿæˆæ›²çº¿ç”Ÿæˆå™¨
+    	var BÃ©zier_curve_generator = d3.linkHorizontal()
     		.x(function(d) { return d.y; })
     		.y(function(d) { return d.x; });
     		
-    	//ÓĞÁË½ÚµãºÍ±ß¼¯µÄÊı¾İºó£¬ÎÒÃÇ¾Í¿ÉÒÔ¿ªÊ¼»æÖÆÁË£¬
-    	//»æÖÆ±ß
+    	//æœ‰äº†èŠ‚ç‚¹å’Œè¾¹é›†çš„æ•°æ®åï¼Œæˆ‘ä»¬å°±å¯ä»¥å¼€å§‹ç»˜åˆ¶äº†ï¼Œ
+    	//ç»˜åˆ¶è¾¹
     	g.append("g")
     		.selectAll("path")
     		.data(links)
@@ -120,14 +120,14 @@
     		.attr("d",function(d){
     			var start = {x:d.source.x,y:d.source.y};
     			var end = {x:d.target.x,y:d.target.y};
-    			return B¨¦zier_curve_generator({source:start,target:end});
+    			return BÃ©zier_curve_generator({source:start,target:end});
     		})
     		.attr("fill","none")
     		.attr("stroke","yellow")
     		.attr("stroke-width",1);
     		
-    	//»æÖÆ½ÚµãºÍÎÄ×Ö
-    	//ÀÏ¹æ¾Ø£¬ÏÈ´´½¨ÓÃÒÔ»æÖÆÃ¿¸ö½ÚµãºÍ¶ÔÓ¦ÎÄ×ÖµÄ·Ö×é<g>
+    	//ç»˜åˆ¶èŠ‚ç‚¹å’Œæ–‡å­—
+    	//è€è§„çŸ©ï¼Œå…ˆåˆ›å»ºç”¨ä»¥ç»˜åˆ¶æ¯ä¸ªèŠ‚ç‚¹å’Œå¯¹åº”æ–‡å­—çš„åˆ†ç»„<g>
     	var gs = g.append("g")
     		.selectAll("g")
     		.data(nodes)
@@ -138,15 +138,15 @@
     			var cy= d.y;
     			return "translate("+cy+","+cx+")";
     		});
-    	//»æÖÆ½Úµã
+    	//ç»˜åˆ¶èŠ‚ç‚¹
     	gs.append("circle")
     		.attr("r",6)
     		.attr("fill","white")
     		.attr("stroke","blue")
     		.attr("stroke-width",1);
     		
-    	//ÎÄ×Ö
-    	gs.append("text")
+    	//æ–‡å­—
+    	/*gs.append("text")
     		.attr("x",function(d){
     			return d.children?-40:8;
     		})
@@ -154,7 +154,7 @@
     		.attr("dy",10)
     		.text(function(d){
     			return d.data.name;
-    		})
+    		})**/
     		
     </script>
   </body>
