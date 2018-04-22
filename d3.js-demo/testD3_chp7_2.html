@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>testD3_chp7_2.html</title>
+    
+    <script type="text/javascript" src="http://d3js.org/d3.v5.min.js">
+	</script>
+	
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+
+  </head>
+  
+  <body>
+    <svg width="960" height="600"></svg>
+    <script>
+    	var marge = {top:60,bottom:60,left:60,right:60}
+    	var dataset = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];  
+    	
+    	//定义一个线性比例尺
+    	var scaleLinear = d3.scaleLinear()
+    		.domain([0,d3.max(dataset)])
+    		.range([0,300]);
+    	
+    	var svg = d3.select("svg");
+    	var g = svg.append("g")
+    		.attr("transform","translate("+marge.top+","+marge.left+")");
+    	
+    	var rectHeight = 30;
+    	
+    	g.selectAll("rect")
+    		.data(dataset)
+    		.enter()
+    		.append("rect")
+    		.attr("x",20)
+    		.attr("y",function(d,i){
+    			return i*rectHeight;
+    		})
+    		.attr("width",function(d){
+    			return scaleLinear(d);//设置宽,并在这里使用比例尺
+    		})
+    		.attr("height",rectHeight-5)
+    		.attr("fill","blue");
+    </script>
+  </body>
+</html>
